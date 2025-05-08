@@ -8,9 +8,9 @@ const SearchBox = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col w-md items-center text-left">
       <p>Find contacts by name</p>
-      <input className={"input"} type="text" onChange={handleFilter} />
+      <input className="input w-full" type="text" onChange={handleFilter} />
     </div>
   );
 };

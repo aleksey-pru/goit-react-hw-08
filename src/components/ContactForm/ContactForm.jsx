@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
+import SearchBox from "../SeacrhBox/SearchBox";
 
 const FeedbackSchema = Yup.object().shape({
   username: Yup.string()
@@ -36,8 +37,8 @@ const ContactForm = () => {
       onSubmit={handleAddContact}
       validationSchema={FeedbackSchema}
     >
-      <Form className={"w-sm flex flex-col"}>
-        <div>
+      <Form className={"flex flex-col items-center "}>
+        <div className="w-full max-w-md">
           <div className={"flex flex-col"}>
             <label
               className={
@@ -48,7 +49,7 @@ const ContactForm = () => {
               Name
             </label>
             <Field
-              className={"input"}
+              className={"input w-full"}
               type="text"
               name="username"
               id={nameFieldId}
@@ -69,7 +70,7 @@ const ContactForm = () => {
               Phone
             </label>
             <Field
-              className={"input"}
+              className={"input w-full"}
               type="text"
               name="phone"
               id={phoneFieldId}
@@ -82,11 +83,14 @@ const ContactForm = () => {
           </div>
         </div>
         <button
-          className={"flex justify-center btn w-30 mb-10 hover:bg-red-700"}
+          className={
+            "flex justify-center btn btn-primary w-30 mb-10 hover:bg-red-700"
+          }
           type="submit"
         >
           Add contact
         </button>
+        <SearchBox />
       </Form>
     </Formik>
   );

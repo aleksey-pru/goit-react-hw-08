@@ -11,7 +11,6 @@ const HomePage = () => {
     <div>
       <h1 className={"text-6xl text-center hover:text-2xl"}>Phonebook</h1>
       <ContactForm />
-      <SearchBox />
       {isLoading && !error && (
         <BeatLoader
           style={{

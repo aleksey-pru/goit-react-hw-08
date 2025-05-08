@@ -6,7 +6,7 @@ const AuthNav = () => {
     return clsx(isActive && "text-red-500");
   };
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-10">
       <NavLink className={setActiveClass} to="/login">
         Login
       </NavLink>

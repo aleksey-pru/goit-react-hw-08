@@ -7,19 +7,24 @@ import { deleteContact } from "../../redux/contacts/operations";
 const Contact = ({ data: { id, name, phone } }) => {
   const dispatch = useDispatch();
   return (
-    <div className={s.container}>
-      <div className={s.infoContainer}>
-        <p className={s.name}>
+    <div className="flex items-center justify-between border border-white1 shadow-md rounded-xl p-2 text-white bg-gray-800">
+      <div className="flex flex-col text-center gap-0.5">
+        <p className="flex items-baseline gap-2">
           <BsPersonFill />
           {name}
         </p>
 
-        <p className={s.name}>
+        <p className="flex items-baseline gap-2">
           <FaPhone />
           {phone}
         </p>
       </div>
-      <button onClick={() => dispatch(deleteContact(id))}>Delete</button>
+      <button
+        className="btn btn-primary"
+        onClick={() => dispatch(deleteContact(id))}
+      >
+        Delete
+      </button>
     </div>
   );
 };
