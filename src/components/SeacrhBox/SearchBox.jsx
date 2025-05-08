@@ -10,7 +10,11 @@ const SearchBox = () => {
   return (
     <div className="flex flex-col w-md items-center text-left">
       <p>Find contacts by name</p>
-      <input className="input w-full" type="text" onChange={handleFilter} />
+      <input
+        className="input w-full mb-5"
+        type="text"
+        onChange={handleFilter}
+      />
     </div>
   );
 };

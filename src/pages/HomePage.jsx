@@ -10,15 +10,6 @@ const HomePage = () => {
   return (
     <div>
       <h1 className={"text-6xl text-center hover:text-2xl"}>Phonebook</h1>
-      <ContactForm />
-      {isLoading && !error && (
-        <BeatLoader
-          style={{
-            textAlign: "center",
-          }}
-          color="#ffffff"
-        />
-      )}
     </div>
   );
 };
