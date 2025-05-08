@@ -3,7 +3,7 @@ import { useId } from "react";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsOps";
+import { addContact } from "../../redux/contacts/operations";
 
 const FeedbackSchema = Yup.object().shape({
   username: Yup.string()
@@ -36,26 +36,55 @@ const ContactForm = () => {
       onSubmit={handleAddContact}
       validationSchema={FeedbackSchema}
     >
-      <Form>
-        <div className={s.fieldWrapper}>
-          <label htmlFor={nameFieldId}>Name</label>
-          <Field type="text" name="username" id={nameFieldId} />
-          <ErrorMessage
-            className={s.errorMessage}
-            name="username"
-            component="span"
-          />
+      <Form className={"w-sm flex flex-col"}>
+        <div>
+          <div className={"flex flex-col"}>
+            <label
+              className={
+                "text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight mb-3"
+              }
+              htmlFor={nameFieldId}
+            >
+              Name
+            </label>
+            <Field
+              className={"input"}
+              type="text"
+              name="username"
+              id={nameFieldId}
+            />
+            <ErrorMessage
+              className={"text-red-500 dark:text-red-400 mt-2 text-sm"}
+              name="username"
+              component="span"
+            />
+          </div>
+          <div className={"flex flex-col mb-5"}>
+            <label
+              className={
+                "text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight mb-3"
+              }
+              htmlFor={phoneFieldId}
+            >
+              Phone
+            </label>
+            <Field
+              className={"input"}
+              type="text"
+              name="phone"
+              id={phoneFieldId}
+            />
+            <ErrorMessage
+              className={"text-red-500 dark:text-red-400 mt-2 text-sm"}
+              name="phone"
+              component="span"
+            />
+          </div>
         </div>
-        <div className={s.fieldWrapper}>
-          <label htmlFor={phoneFieldId}>Phone</label>
-          <Field type="text" name="phone" id={phoneFieldId} />
-          <ErrorMessage
-            className={s.errorMessage}
-            name="phone"
-            component="span"
-          />
-        </div>
-        <button className={s.submitBtn} type="submit">
+        <button
+          className={"flex justify-center btn w-30 mb-10 hover:bg-red-700"}
+          type="submit"
+        >
           Add contact
         </button>
       </Form>
