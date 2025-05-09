@@ -11,6 +11,7 @@ const LoginForm = () => {
   const handleSubmit = (values, action) => {
     console.log(values);
     dispatch(loginThunk(values));
+    action.resetForm();
   };
   return (
     <div className="hero bg-base-200 ">

@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 export const goitAPI = axios.create({
   baseURL: "https://connections-api.goit.global/",
@@ -34,6 +35,7 @@ export const loginThunk = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
+      toast.error("Wrong email or password");
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -45,6 +47,24 @@ export const logoutThunk = createAsyncThunk(
     try {
       await goitAPI.post("/users/logout");
       removeAuthHeader();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshThunk = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("No token found");
+    }
+    setAuthHeader(persistedToken);
+    try {
+      const response = await goitAPI.get("/users/current");
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

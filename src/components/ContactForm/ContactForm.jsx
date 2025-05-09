@@ -83,9 +83,7 @@ const ContactForm = () => {
           </div>
         </div>
         <button
-          className={
-            "flex justify-center btn btn-primary w-30 mb-10 hover:bg-red-700"
-          }
+          className={"flex justify-center btn btn-primary w-30 mb-10 "}
           type="submit"
         >
           Add contact

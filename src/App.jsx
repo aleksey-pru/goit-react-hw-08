@@ -14,15 +14,37 @@ import LoginPage from "./pages/LoginPage";
 import ContactsPage from "./pages/ContactsPage";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout/Layout";
+import { refreshThunk } from "./redux/auth/operations";
+import { selectIsRefreshing } from "./redux/auth/selectors";
+import PrivateRoute from "./components/PrivateRoute";
+import RestrictedRoute from "./components/RestrictedRoute";
 
 const App = () => {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshThunk());
+  }, [dispatch]);
+  return isRefreshing ? null : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="contacts" element={<ContactsPage />} />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute>
+              <ContactsPage />
+            </PrivateRoute>
+          }
+        />
       </Route>
-      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/login"
+        element={
+          <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
+        }
+      />
       <Route path="/register" element={<RegistrationPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
