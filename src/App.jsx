@@ -45,7 +45,15 @@ const App = () => {
           <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
         }
       />
-      <Route path="/register" element={<RegistrationPage />} />
+      <Route
+        path="/register"
+        element={
+          <RestrictedRoute
+            component={<RegistrationPage />}
+            redirectTo="/contacts"
+          />
+        }
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
