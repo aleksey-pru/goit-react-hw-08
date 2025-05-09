@@ -44,9 +44,7 @@ const slice = createSlice({
         );
       })
       .addCase(deleteContact.rejected, handleRejected)
-      .addCase(logoutThunk.fulfilled, (state) => {
-        state.items = [];
-      });
+      .addCase(logoutThunk.fulfilled, () => initialState);
   },
 });
 

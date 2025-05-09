@@ -1,10 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import toast from "react-hot-toast";
-
-export const goitAPI = axios.create({
-  baseURL: "https://connections-api.goit.global/",
-});
+import { goitAPI } from "../auth/operations";
 
 axios.defaults.baseURL = "https://connections-api.goit.global/";
 

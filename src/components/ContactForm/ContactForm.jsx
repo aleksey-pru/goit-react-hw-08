@@ -28,6 +28,7 @@ const ContactForm = () => {
     dispatch(addContact(newContact));
     actions.resetForm();
   };
+
   const nameFieldId = useId();
   const phoneFieldId = useId();
 
